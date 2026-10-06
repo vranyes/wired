@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16073D"/>
+      <stop offset="0.5" stop-color="#4C1D95"/>
+      <stop offset="0.82" stop-color="#B45309"/>
+      <stop offset="1" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="cream" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFBF2"/>
+      <stop offset="1" stop-color="#FFE7C2"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- night-to-dawn background: up all night, wired till sunrise -->
+  <rect x="0" y="0" width="1024" height="1024" rx="230" fill="url(#bg)"/>
+  <ellipse cx="512" cy="600" rx="380" ry="340" fill="url(#glow)"/>
+
+  <!-- sparkles -->
+  <g fill="#FDE68A">
+    <path transform="translate(170,210) scale(46)" d="M0,-1 C0.12,-0.32 0.32,-0.12 1,0 C0.32,0.12 0.12,0.32 0,1 C-0.12,0.32 -0.32,0.12 -1,0 C-0.32,-0.12 -0.12,-0.32 0,-1 Z"/>
+    <path transform="translate(845,165) scale(34)" opacity="0.85" d="M0,-1 C0.12,-0.32 0.32,-0.12 1,0 C0.32,0.12 0.12,0.32 0,1 C-0.12,0.32 -0.32,0.12 -1,0 C-0.32,-0.12 -0.12,-0.32 0,-1 Z"/>
+    <path transform="translate(888,640) scale(40)" opacity="0.9" d="M0,-1 C0.12,-0.32 0.32,-0.12 1,0 C0.32,0.12 0.12,0.32 0,1 C-0.12,0.32 -0.32,0.12 -1,0 C-0.32,-0.12 -0.12,-0.32 0,-1 Z"/>
+    <path transform="translate(140,700) scale(30)" opacity="0.75" d="M0,-1 C0.12,-0.32 0.32,-0.12 1,0 C0.32,0.12 0.12,0.32 0,1 C-0.12,0.32 -0.32,0.12 -1,0 C-0.32,-0.12 -0.12,-0.32 0,-1 Z"/>
+    <path transform="translate(762,300) scale(22)" opacity="0.7" d="M0,-1 C0.12,-0.32 0.32,-0.12 1,0 C0.32,0.12 0.12,0.32 0,1 C-0.12,0.32 -0.32,0.12 -1,0 C-0.32,-0.12 -0.12,-0.32 0,-1 Z"/>
+  </g>
+
+  <!-- warm steam curls -->
+  <g fill="none" stroke="#FFD98A" stroke-width="30" stroke-linecap="round" opacity="0.95">
+    <path d="M350 395 C310 340 390 305 355 245"/>
+    <path d="M470 400 C430 330 510 295 475 225 C462 198 472 176 488 160"/>
+    <path d="M590 395 C630 340 550 305 585 245"/>
+  </g>
+
+  <!-- saucer -->
+  <ellipse cx="500" cy="858" rx="265" ry="46" fill="#FFF3E0" stroke="#231245" stroke-width="26"/>
+
+  <!-- handle (dark outline, then cream core) -->
+  <path d="M655 545 C800 545 800 730 655 730" fill="none" stroke="#231245" stroke-width="104" stroke-linecap="round"/>
+  <path d="M655 545 C800 545 800 730 655 730" fill="none" stroke="#FFF6E9" stroke-width="56" stroke-linecap="round"/>
+
+  <!-- mug body -->
+  <rect x="285" y="440" width="370" height="370" rx="64" fill="url(#cream)" stroke="#231245" stroke-width="30"/>
+
+  <!-- coffee surface -->
+  <ellipse cx="470" cy="445" rx="185" ry="60" fill="#231245"/>
+  <ellipse cx="470" cy="448" rx="158" ry="46" fill="#6F4E37"/>
+  <ellipse cx="470" cy="448" rx="100" ry="27" fill="none" stroke="#D9A45B" stroke-width="12" opacity="0.75"/>
+  <ellipse cx="410" cy="440" rx="26" ry="10" fill="#FFFFFF" opacity="0.28"/>
+
+  <!-- lightning bolt: the "wired" jolt -->
+  <polygon points="515,555 420,675 465,675 440,760 540,650 493,650 525,555"
+           fill="#FFC53D" stroke="#231245" stroke-width="20"
+           stroke-linejoin="round"/>
+
+  <!-- stray coffee beans -->
+  <g>
+    <ellipse cx="188" cy="830" rx="32" ry="44" transform="rotate(-20 188 830)" fill="#6F4E37" stroke="#231245" stroke-width="14"/>
+    <path d="M176 792 C192 812 192 848 204 868" fill="none" stroke="#3A2415" stroke-width="10" stroke-linecap="round"/>
+    <ellipse cx="824" cy="812" rx="30" ry="42" transform="rotate(18 824 812)" fill="#6F4E37" stroke="#231245" stroke-width="14"/>
+    <path d="M814 776 C828 796 828 828 838 848" fill="none" stroke="#3A2415" stroke-width="10" stroke-linecap="round"/>
+  </g>
+</svg>
