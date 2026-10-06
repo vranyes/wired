@@ -9,10 +9,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private var currentMode: AwakeMode = .off
     private var lastActiveMode: AwakeMode = .display
+    private var currentTheme: IconTheme = .eye
 
     private enum DefaultsKey {
         static let currentMode = "Awake.currentMode"
         static let lastActiveMode = "Awake.lastActiveMode"
+        static let iconTheme = "Awake.iconTheme"
     }
 
     // MARK: - Entry point
@@ -49,7 +51,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             object: nil
         )
 
-        // Restore saved mode (first launch defaults to sleepy/off).
+        // Restore saved mode (first launch defaults to off).
         setMode(currentMode, persistLastActive: false)
         if currentMode.isActive {
             lastActiveMode = currentMode
@@ -88,7 +90,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 lastActiveMode = mode
             }
         } else {
-            // Assertion failed — fall back to sleepy so the icon never lies.
+            // Assertion failed — fall back to off so the icon never lies.
             currentMode = .off
             NSLog("Awake: failed to take assertion, falling back to off")
         }
@@ -98,7 +100,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func refreshUI() {
         guard let button = statusItem?.button else { return }
-        button.image = EyeIcon.image(for: currentMode)
+        button.image = currentTheme.image(for: currentMode)
         button.toolTip = currentMode.tooltip
         button.appearsDisabled = false
     }
@@ -117,6 +119,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             item.target = self
             item.representedObject = mode.rawValue
             item.state = (mode == currentMode) ? .on : .off
+            menu.addItem(item)
+        }
+
+        menu.addItem(.separator())
+
+        let themeHeader = NSMenuItem(title: "Icon Theme", action: nil, keyEquivalent: "")
+        themeHeader.isEnabled = false
+        menu.addItem(themeHeader)
+        for theme in IconTheme.allCases {
+            let item = NSMenuItem(
+                title: theme.menuTitle,
+                action: #selector(selectTheme(_:)),
+                keyEquivalent: ""
+            )
+            item.target = self
+            item.representedObject = theme.rawValue
+            item.state = (theme == currentTheme) ? .on : .off
             menu.addItem(item)
         }
 
@@ -152,6 +171,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             let mode = AwakeMode(rawValue: raw)
         else { return }
         setMode(mode)
+    }
+
+    @objc private func selectTheme(_ sender: NSMenuItem) {
+        guard
+            let raw = sender.representedObject as? String,
+            let theme = IconTheme(rawValue: raw)
+        else { return }
+        currentTheme = theme
+        refreshUI()
+        savePreferences()
     }
 
     @objc private func toggleLaunchAtLogin(_ sender: NSMenuItem) {
@@ -196,11 +225,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         {
             lastActiveMode = mode
         }
+        if let raw = defaults.string(forKey: DefaultsKey.iconTheme),
+           let theme = IconTheme(rawValue: raw)
+        {
+            currentTheme = theme
+        }
     }
 
     private func savePreferences() {
         let defaults = UserDefaults.standard
         defaults.set(currentMode.rawValue, forKey: DefaultsKey.currentMode)
         defaults.set(lastActiveMode.rawValue, forKey: DefaultsKey.lastActiveMode)
+        defaults.set(currentTheme.rawValue, forKey: DefaultsKey.iconTheme)
     }
 }

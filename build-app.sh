@@ -10,7 +10,7 @@ BUILD_DIR=".build/release"
 APP_BUNDLE="$APP_NAME.app"
 
 echo "==> swift build -c release"
-swift build -c release
+swift build -c release --build-system native
 
 echo "==> assembling $APP_BUNDLE"
 rm -rf "$APP_BUNDLE"
