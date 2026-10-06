@@ -1,11 +1,11 @@
 #!/bin/sh
-# Build the Awake menu-bar app and wrap it in Awake.app.
+# Build the Wired menu-bar app and wrap it in Wired.app.
 set -eu
 
 cd "$(dirname "$0")"
 
-APP_NAME="Awake"
-BUNDLE_ID="com.personal.awake"
+APP_NAME="Wired"
+BUNDLE_ID="com.personal.wired"
 BUILD_DIR=".build/release"
 APP_BUNDLE="$APP_NAME.app"
 
@@ -27,4 +27,4 @@ fi
 
 echo "==> done: $(pwd)/$APP_BUNDLE"
 echo "Run with: open \"$APP_BUNDLE\""
-echo "Check assertions with: pmset -g assertions | grep -i -A2 awake"
+echo "Check assertions with: pmset -g assertions | grep -i -A2 wired"

@@ -12,9 +12,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var currentTheme: IconTheme = .eye
 
     private enum DefaultsKey {
-        static let currentMode = "Awake.currentMode"
-        static let lastActiveMode = "Awake.lastActiveMode"
-        static let iconTheme = "Awake.iconTheme"
+        static let currentMode = "Wired.currentMode"
+        static let lastActiveMode = "Wired.lastActiveMode"
+        static let iconTheme = "Wired.iconTheme"
     }
 
     // MARK: - Entry point
@@ -35,7 +35,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         guard let button = statusItem?.button else {
-            NSLog("Awake: could not create status item button")
+            NSLog("Wired: could not create status item button")
             NSApp.terminate(nil)
             return
         }
@@ -92,7 +92,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             // Assertion failed — fall back to off so the icon never lies.
             currentMode = .off
-            NSLog("Awake: failed to take assertion, falling back to off")
+            NSLog("Wired: failed to take assertion, falling back to off")
         }
         refreshUI()
         savePreferences()
@@ -152,7 +152,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         menu.addItem(.separator())
         let quitItem = NSMenuItem(
-            title: "Quit Awake",
+            title: "Quit Wired",
             action: #selector(quit(_:)),
             keyEquivalent: "q"
         )
@@ -191,7 +191,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 try SMAppService.mainApp.register()
             }
         } catch {
-            NSLog("Awake: Launch-at-Login toggle failed: \(error)")
+            NSLog("Wired: Launch-at-Login toggle failed: \(error)")
         }
     }
 

@@ -2,12 +2,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "Awake",
+    name: "Wired",
     platforms: [.macOS(.v14)],
     targets: [
         .executableTarget(
-            name: "Awake",
-            path: "Sources/Awake",
+            name: "Wired",
+            path: "Sources/Wired",
             linkerSettings: [
                 .linkedFramework("IOKit"),
             ]

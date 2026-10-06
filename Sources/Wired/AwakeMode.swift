@@ -29,9 +29,9 @@ enum AwakeMode: String, CaseIterable {
 
     var tooltip: String {
         switch self {
-        case .off: return "Awake: Off — click to keep system awake"
-        case .system: return "Awake: System Awake — click for display-on mode"
-        case .display: return "Awake: Display On — click to allow sleep"
+        case .off: return "Wired: Off — click to keep system awake"
+        case .system: return "Wired: System Awake — click for display-on mode"
+        case .display: return "Wired: Display On — click to allow sleep"
         }
     }
 

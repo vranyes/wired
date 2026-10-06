@@ -22,12 +22,12 @@ final class PowerAssertionManager {
         case .system:
             return take(
                 type: kIOPMAssertionTypeNoIdleSleep as CFString,
-                reason: "Awake: keeping the system awake (display may sleep)" as CFString
+                reason: "Wired: keeping the system awake (display may sleep)" as CFString
             )
         case .display:
             return take(
                 type: kIOPMAssertionTypeNoDisplaySleep as CFString,
-                reason: "Awake: keeping the display on" as CFString
+                reason: "Wired: keeping the display on" as CFString
             )
         }
     }
@@ -55,7 +55,7 @@ final class PowerAssertionManager {
             &id
         )
         guard result == kIOReturnSuccess else {
-            NSLog("Awake: IOPMAssertionCreateWithName failed: \(result)")
+            NSLog("Wired: IOPMAssertionCreateWithName failed: \(result)")
             return false
         }
         assertionID = id

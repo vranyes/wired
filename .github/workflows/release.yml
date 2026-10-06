@@ -1,0 +1,39 @@
+name: Build and release
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Show Swift version
+        run: swift --version
+
+      - name: Build Wired.app
+        run: ./build-app.sh
+
+      - name: Zip Wired.app for distribution
+        run: ditto -c -k --keepParent Wired.app Wired.app.zip
+
+      - name: Publish to latest release
+        if: github.event_name != 'pull_request'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest
+          body: |
+            Automated build of Wired.app from the default branch.
+
+            Commit: ${{ github.sha }}
+          make_latest: true
+          files: Wired.app.zip
